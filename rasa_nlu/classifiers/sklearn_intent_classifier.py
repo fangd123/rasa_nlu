@@ -111,7 +111,7 @@ class SklearnIntentClassifier(Component):
         # type: (TrainingData, RasaNLUModelConfig, **Any) -> None
         """Train the intent classifier on a data set."""
 
-        num_threads = kwargs.get("num_threads", 1)
+        num_threads = kwargs.get("num_threads", 8)
 
         labels = [e.get("intent")
                   for e in training_data.intent_examples]

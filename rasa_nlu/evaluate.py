@@ -180,6 +180,7 @@ def evaluate_intents(targets, predictions):  # pragma: no cover
     plot_confusion_matrix(cnf_matrix,
                           classes=labels,
                           title='Intent Confusion matrix')
+    #plt.savefig('/mnt/e/x_rasa/Intent-Confusion-matrix.png')
 
     plt.show()
 

@@ -42,6 +42,14 @@ from rasa_nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
 from rasa_nlu.utils.mitie_utils import MitieNLP
 from rasa_nlu.utils.spacy_utils import SpacyNLP
 
+
+from rasa_nlu.featurizers.count_vectors_featurizer_zh import \
+    CountVectorsFeaturizerZH
+from rasa_nlu.tokenizers.hanlp_tokenizer import HanlpTokenizer
+from rasa_nlu.tokenizers.char_tokenizer import CharTokenizer
+from rasa_nlu.extractors.hanlp_pos_extractor import HanlpPOSExtractor
+from rasa_nlu.extractors.ling_extractor import LingExtractor
+
 if typing.TYPE_CHECKING:
     from rasa_nlu.components import Component
     from rasa_nlu.config import RasaNLUModelConfig, RasaNLUModelConfig
@@ -57,7 +65,9 @@ component_classes = [
     CountVectorsFeaturizer,
     MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer, JiebaTokenizer,
     SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier,
-    EmbeddingIntentClassifier
+    EmbeddingIntentClassifier,
+    HanlpTokenizer,CharTokenizer,HanlpPOSExtractor,CountVectorsFeaturizerZH,
+    LingExtractor,
 ]
 
 # Mapping from a components name to its class to allow name based lookup.
