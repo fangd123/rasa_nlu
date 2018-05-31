@@ -49,6 +49,9 @@ from rasa_nlu.tokenizers.hanlp_tokenizer import HanlpTokenizer
 from rasa_nlu.tokenizers.char_tokenizer import CharTokenizer
 from rasa_nlu.extractors.hanlp_pos_extractor import HanlpPOSExtractor
 from rasa_nlu.extractors.ling_extractor import LingExtractor
+from rasa_nlu.featurizers.nerdict_featurizer import \
+    NerdictFeaturizer
+from rasa_nlu.extractors.nerdict_extractor import NerdictExtractor
 
 if typing.TYPE_CHECKING:
     from rasa_nlu.components import Component
@@ -67,7 +70,7 @@ component_classes = [
     SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier,
     EmbeddingIntentClassifier,
     HanlpTokenizer,CharTokenizer,HanlpPOSExtractor,CountVectorsFeaturizerZH,
-    LingExtractor,
+    LingExtractor,NerdictFeaturizer,NerdictExtractor
 ]
 
 # Mapping from a components name to its class to allow name based lookup.

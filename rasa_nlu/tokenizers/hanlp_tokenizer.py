@@ -34,7 +34,7 @@ class HanlpTokenizer(Tokenizer, Component):
 
     @classmethod
     def create(cls, cfg):
-        # type: (RasaNLUModelConfig) -> JiebaTokenizer
+        # type: (RasaNLUModelConfig) -> HanlpTokenizer
 
         from pyhanlp import HanLP as tokenizer
         component_conf = cfg.for_component(cls.name, cls.defaults)
@@ -49,7 +49,7 @@ class HanlpTokenizer(Tokenizer, Component):
              cached_component=None,  # type: Optional[Component]
              **kwargs  # type: **Any
              ):
-        # type: (...) -> JiebaTokenizer
+        # type: (...) -> HanlpTokenizer
 
         from pyhanlp import HanLP as tokenizer
         component_meta = model_metadata.for_component(cls.name, cls.defaults)
