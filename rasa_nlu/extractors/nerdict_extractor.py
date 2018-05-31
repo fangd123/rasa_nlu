@@ -33,7 +33,7 @@ def convert_format_to_rasa(matches):
                   "confidence": 1.0,
                   "entity": match['domain']}
 
-    extracted.append(entity)
+        extracted.append(entity)
 
     return extracted
 
@@ -95,7 +95,7 @@ class NerdictExtractor(EntityExtractor):
 
         matches = self.parse(message.text)
 
-        extracted = convert_format_to_rasa(message.text)
+        extracted = convert_format_to_rasa(matches)
 
         extracted = self.add_extractor_name(extracted)
 

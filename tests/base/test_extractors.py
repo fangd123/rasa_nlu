@@ -193,3 +193,15 @@ def test_spacy_ner_extractor(spacy_nlp):
         'value': 'West',
         'entity': 'LOC',
         'confidence': None}
+
+def test_ner_dict_entity_extractor(component_builder):
+    _config = RasaNLUModelConfig({"pipeline": [{"name": "ner_dict"}]})
+    _config.set_component_attr("ner_dict", ner_dict='E:\\luka_rasa\\data\\ner_dict/data/ner_dict')
+    ner_dict = component_builder.create_component("ner_dict", _config)
+    message = Message("小小子儿坐门墩儿")
+    ner_dict.process(message)
+    entities = message.get("entities")
+    print(entities)
+
+from rasa_nlu.components import ComponentBuilder
+test_ner_dict_entity_extractor(ComponentBuilder)
