@@ -141,3 +141,19 @@ def test_count_vector_featurizer(sentence, expected):
     ftr.process(message)
 
     assert np.all(message.get("text_features")[0] == expected)
+
+def test_nerdict_featurizer(sentence, expected, labeled_tokens, spacy_nlp):
+    from rasa_nlu.featurizers.nerdict_featurizer import NerdictFeaturizer
+    patterns = [
+        {"pattern": '[0-9]+', "name": "number", "usage": "intent"},
+        {"pattern": '\\bhey*', "name": "hello", "usage": "intent"}
+    ]
+    ftr = NerdictFeaturizer(known_patterns=patterns)
+
+    # adds tokens to the message
+    tokenizer = SpacyTokenizer()
+    message = Message(sentence)
+    message.set("spacy_doc", spacy_nlp(sentence))
+    tokenizer.process(message)
+
+    result = ftr.features_for_patterns(message)

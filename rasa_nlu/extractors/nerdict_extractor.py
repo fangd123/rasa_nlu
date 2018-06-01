@@ -20,6 +20,9 @@ import logging
 logger = logging.getLogger(__name__)
 import csv
 
+## TODO: 目前的NER词典提取仅限于直达的情况
+## TODO: 需要和NER算法提取进行区分
+
 def convert_format_to_rasa(matches):
     extracted = []
 
