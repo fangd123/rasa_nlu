@@ -42,9 +42,6 @@ from rasa_nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
 from rasa_nlu.utils.mitie_utils import MitieNLP
 from rasa_nlu.utils.spacy_utils import SpacyNLP
 
-
-from rasa_nlu.featurizers.count_vectors_featurizer_zh import \
-    CountVectorsFeaturizerZH
 from rasa_nlu.tokenizers.hanlp_tokenizer import HanlpTokenizer
 from rasa_nlu.tokenizers.char_tokenizer import CharTokenizer
 from rasa_nlu.extractors.hanlp_pos_extractor import HanlpPOSExtractor
@@ -52,6 +49,8 @@ from rasa_nlu.extractors.ling_extractor import LingExtractor
 from rasa_nlu.featurizers.nerdict_featurizer import \
     NerdictFeaturizer
 from rasa_nlu.extractors.nerdict_extractor import NerdictExtractor
+
+
 
 if typing.TYPE_CHECKING:
     from rasa_nlu.components import Component
@@ -69,8 +68,8 @@ component_classes = [
     MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer, JiebaTokenizer,
     SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier,
     EmbeddingIntentClassifier,
-    HanlpTokenizer,CharTokenizer,HanlpPOSExtractor,CountVectorsFeaturizerZH,
-    LingExtractor,NerdictFeaturizer,NerdictExtractor
+    HanlpTokenizer, CharTokenizer, HanlpPOSExtractor,
+    LingExtractor, NerdictFeaturizer, NerdictExtractor,
 ]
 
 # Mapping from a components name to its class to allow name based lookup.
@@ -93,6 +92,8 @@ registered_pipeline_templates = {
         "intent_classifier_keyword",
     ],
     "tensorflow_embedding": [
+        "tokenizer_whitespace",
+        "ner_crf",
         "intent_featurizer_count_vectors",
         "intent_classifier_tensorflow_embedding"
     ]
@@ -137,7 +138,7 @@ def load_component_by_name(component_name,  # type: Text
                            **kwargs  # type: **Any
                            ):
     # type: (...) -> Optional[Component]
-    """Resolves a component and calls it's load method to init it based on a
+    """Resolves a component and calls its load method to init it based on a
     previously persisted model."""
 
     component_clz = get_component_class(component_name)

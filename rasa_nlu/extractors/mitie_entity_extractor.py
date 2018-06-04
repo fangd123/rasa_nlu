@@ -82,7 +82,7 @@ class MitieEntityExtractor(EntityExtractor):
                             "preceeded by the 'nlp_mitie' component.")
 
         trainer = mitie.ner_trainer(model_file)
-        trainer.num_threads = 8
+        trainer.num_threads = kwargs.get("num_threads", 1)
         found_one_entity = False
 
         # filter out pre-trained entity examples
