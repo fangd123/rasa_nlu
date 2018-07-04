@@ -87,7 +87,7 @@ class HanlpTokenizer(Tokenizer, Component):
             word_len = len(term.word)
             running_offset = word_offset + word_len
             tokens.append(Token(term.word, word_offset))
-        #logging.debug(terms)
+        logging.debug(terms)
         return tokens
 
 
@@ -104,7 +104,7 @@ class HanlpTokenizer(Tokenizer, Component):
             path_user_dicts = glob.glob(parse_pattern.format(dict_config.get("user_dicts")))
             tokenizer = cls.set_user_dicts(tokenizer, path_user_dicts)
         else:
-            print("No Hanlp User Dictionary found")
+            logger.info("No Hanlp User Dictionary found")
 
         return tokenizer
 
@@ -115,12 +115,12 @@ class HanlpTokenizer(Tokenizer, Component):
 
         if len(path_user_dicts) > 0:
             for path_user_dict in path_user_dicts:
-                print("Loading Hanlp User Dictionary at " + str(path_user_dict))
+                logger.info("Loading Hanlp User Dictionary at " + str(path_user_dict))
                 with open(path_user_dict, 'r', encoding='utf-8') as f:
                     for word in f.readlines():
                         CustomDictionary.add(word.strip())  # 动态增加
         else:
-            print("No Hanlp User Dictionary found")
+            logger.info("No Hanlp User Dictionary found")
 
         return tokenizer
 
